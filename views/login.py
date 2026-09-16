@@ -1,3 +1,5 @@
+import subprocess
+
 import tkinter as tk 
 from tkinter import messagebox
 
@@ -8,6 +10,12 @@ def connexion():
 
     if code == "admin" and password == "12345678":
         messagebox.showinfo("Succès", "Connexion réussie")
+
+        fenetre.destroy()
+
+        subprocess.Popen(
+            ["python3", "views/fenetre_principale.py"]
+        )
     else: 
         messagebox.showerror("Erreur", "Code utilisateur ou mot de passe invalide")
 
