@@ -1,6 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 
+from utils.validation import (
+
+    valider_nom, 
+    valider_courriel, 
+    valider_motdepasse
+)
+
 def enregistrer():
     nom = nom_entry.get()
     prenom = prenom_entry.get()
@@ -13,13 +20,34 @@ def enregistrer():
             "Tous les champs sont obligatoires"
         )
         return
+    if not valider_nom(nom):
+        messagebox.showerror(
+            "Erreur",
+            "Le nom est invalide"
+        )
+        return
 
-    if len(motdepasse) < 8:
+    if not valider_nom(prenom):
+        messagebox.showerror(
+            "Erreur",
+            "Le prénom est invalide"
+        )
+        return
+
+    if not valider_courriel(courriel):
+        messagebox.showerror(
+            "Erreur",
+            "Le courriel est invalide" 
+        )
+        return
+
+    if not valider_motdepasse(motdepasse):
         messagebox.showerror(
             "Erreur",
             "Le mot de passe doit contenir au moins 8 caractères"
         )
         return
+
     with open("clients.txt", "a") as fichier:
         fichier.write(f"{prenom} {nom}\n")
 
